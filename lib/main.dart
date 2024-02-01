@@ -43,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
             padding: const EdgeInsets.only(bottom: 20),
             child: Text(
               dpr < 1 ? 'Behold!' : 'Zoom Out until DPR < 1',
-              style: TextStyle(fontSize: 32, color: txtColor),
+              style: TextStyle(fontSize: 24, color: txtColor),
             ),
           ),
           Row(
@@ -67,7 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 )
                 .toList(),
           ),
-          const SizedBox(height: 100),
+          const SizedBox(height: 50),
           Container(
             width: double.infinity,
             height: 100,
@@ -91,10 +91,10 @@ class _MyHomePageState extends State<MyHomePage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Padding(
-                padding: EdgeInsets.only(top: 100, bottom: 5),
+                padding: EdgeInsets.only(top: 50, bottom: 5),
                 child: Text(
                   'Current Device Pixel Ratio:',
-                  style: TextStyle(fontSize: 32),
+                  style: TextStyle(fontSize: 24),
                 ),
               ),
               Text(

@@ -32,27 +32,29 @@
   <title>issue_129182</title>
   <link rel="manifest" href="manifest.json">
 
-  <script>
-    // The value below is injected by flutter build, do not touch.
-    const serviceWorkerVersion = null;
-  </script>
   <!-- This script adds the flutter initialization JS code -->
   <script src="flutter.js" defer></script>
+
+  <style>
+    .embeddedApp {
+      width: 320px;
+      height: 480px;
+    }
+  </style>
 </head>
 <body>
+  <div id="tgt" class="embeddedApp"></div>
   <script>
-    window.addEventListener('load', function(ev) {
-      // Download main.dart.js
+    let renderer = (new URLSearchParams(location.search)).get("renderer");
+    let embedded = (new URLSearchParams(location.search)).get("embedded") ?? false;
+    window.addEventListener("load", function(ev) {
       _flutter.loader.loadEntrypoint({
-        serviceWorker: {
-          serviceWorkerVersion: serviceWorkerVersion,
-        },
-        onEntrypointLoaded: function(engineInitializer) {
-          engineInitializer.initializeEngine({
-            renderer: 'html',
-          }).then(function(appRunner) {
-            appRunner.runApp();
+        onEntrypointLoaded: async function(engineInitializer) {
+          let appRunner = await engineInitializer.initializeEngine({
+            renderer:  renderer ?? "html",
+            hostElement: embedded ? tgt : null,
           });
+          appRunner.runApp();
         }
       });
     });
